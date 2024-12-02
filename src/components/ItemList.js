@@ -20,7 +20,7 @@ const ItemList = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get('http://localhost:5000/api/items')
+        axios.get('https://habackend.onrender.com/api/items')
             .then(response => setItems(response.data))
             .catch(error => console.error(error));
     }, []);
@@ -35,7 +35,7 @@ const ItemList = () => {
     };
 
     const handleDelete = (id) => {
-        axios.delete(`http://localhost:5000/api/items/${id}`)
+        axios.delete(`https://habackend.onrender.com/api/items/${id}`)
             .then(() => {
                 setItems(items.filter(item => item._id !== id));
             })
@@ -60,7 +60,7 @@ const ItemList = () => {
 
     const handleSubmitAdd = (event) => {
         event.preventDefault();
-        axios.post('http://localhost:5000/api/items', newItem)
+        axios.post('https://habackend.onrender.com/api/items', newItem)
             .then(response => {
                 setItems([...items, response.data]);
                 setNewItem({ name: '', quantity: '', price: '' });
@@ -71,7 +71,7 @@ const ItemList = () => {
 
     const handleSubmitEdit = (event) => {
         event.preventDefault();
-        axios.put(`http://localhost:5000/api/items/${selectedItem._id}`, newItem)
+        axios.put(`https://habackend.onrender.com/api/items/${selectedItem._id}`, newItem)
             .then(response => {
                 setItems(items.map(item => item._id === selectedItem._id ? response.data : item));
                 setSelectedItem(null); // Clear selected item
